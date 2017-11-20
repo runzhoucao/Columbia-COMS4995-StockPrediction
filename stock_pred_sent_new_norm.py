@@ -11,15 +11,19 @@ from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt2
 import random
 
+# same file as stock_pred_sent.py 
+# the only difference is that in this script, the opinion first undergoes Z-score normalization,
+# then undergoes min-max normalization, as the reference paper did.
+
 def standard_scaler(stock_name, normalize=True):
     df = pd.read_excel('stock_with_sentiment.xlsx', sheetname=stock_name)
-#     df = pd.read_excel('stock_price.xlsx', sheetname=stock_name)
     if shape[0]==1 and normalize:
         min_max_scaler = prep.MinMaxScaler()
         df['price'] = min_max_scaler.fit_transform(df['price'].values.reshape(-1,1))
     if shape[0]==2 and normalize:
         min_max_scaler = prep.MinMaxScaler()
         df['price'] = min_max_scaler.fit_transform(df['price'].values.reshape(-1,1))
+        # first z-score normalization, then min-max normalization
         scaler = StandardScaler()
         scaler.fit(df['opinion'].values.reshape(-1,1))
         df['opinion'] = scaler.transform(df['opinion'].values.reshape(-1,1))
@@ -29,14 +33,7 @@ def standard_scaler(stock_name, normalize=True):
 def preprocess_data(stock, seq_len):
     amount_of_features = len(stock.columns)
     data = stock.as_matrix()
-#     for index in range(data.shape[0]-1):
-#         data[index][0] = (data[index+1][0]-data[index][0])*1.0/data[index][0]
-#         data[index][0] = (data[index][0]-(-0.1))/0.2
-#         if(data[index][0]>1):
-#             data[index][0] = 1
-#         elif (data[index][0]<0):
-#             data[index][0] = 0
-    
+
 #     data = np.delete(data, data.shape[0]-1, 0)
 #    plt2.plot(data.T[0][0:30], color='red', label='price')
 #     plt2.plot(data.T[1][0:30], color='blue', label='price')
@@ -51,8 +48,6 @@ def preprocess_data(stock, seq_len):
     result = np.array(result)
     row = round(0.8 * result.shape[0])
     train = result[: int(row), :]
-    
-#     train, result = standard_scaler(train, result)
     
     X_train = train[:, : -1]
     y_train = train[:, -1][: ,-1]
@@ -92,9 +87,11 @@ def build_model(layers, neurons, d):
 
 
 for window in range(1,17):
-    # window = 4
+    # shape[#number of feature, the window size, the output size]
     shape = [2, window, 1]
+    # the number of neurons in each layer
     neurons = [128,128,32,1]
+    # dropout rate
     d=0.2
     df = standard_scaler('300333', normalize=True)
 
@@ -121,12 +118,12 @@ for window in range(1,17):
     f = []
     v_star=[]
     v=[]
+    # check whether the volatility is positive or negative
     for i in range(pred.size-1):
-    #     f_star.append((pred[i]>0.5))
-    #     f.append((y_test[i]>0.5))
         f_star.append((pred[i+1]-pred[i]>0))
         f.append((y_test[i+1]-y_test[i])>0)
     counter = 0
+    # count the number of correct prediction
     for i in range(len(f)):
         if f_star[i][0] == f[i]:
             counter += 1
