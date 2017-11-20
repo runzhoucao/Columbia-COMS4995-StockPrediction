@@ -7,6 +7,7 @@ import numpy as np
 import pandas as pd
 import sklearn.preprocessing as prep
 from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt2
 import random
 
@@ -48,7 +49,7 @@ def preprocess_data(stock, seq_len):
         result.append(data[index : index + sequence_length])
         
     result = np.array(result)
-    row = round(0.9 * result.shape[0])
+    row = round(0.8 * result.shape[0])
     train = result[: int(row), :]
     
 #     train, result = standard_scaler(train, result)
