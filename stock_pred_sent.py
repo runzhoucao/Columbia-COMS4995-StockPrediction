@@ -11,8 +11,8 @@ import matplotlib.pyplot as plt2
 import random
 
 def standard_scaler(stock_name, normalize=True):
-#     df = pd.read_excel('stock_with_sentiment.xlsx', sheetname=stock_name)
-    df = pd.read_excel('stock_price.xlsx', sheetname=stock_name)
+    df = pd.read_excel('stock_with_sentiment.xlsx', sheetname=stock_name)
+#    df = pd.read_excel('stock_price.xlsx', sheetname=stock_name)
     if shape[0]==1 and normalize:
         min_max_scaler = prep.MinMaxScaler()
         df['price'] = min_max_scaler.fit_transform(df['price'].values.reshape(-1,1))
@@ -46,7 +46,6 @@ def preprocess_data(stock, seq_len):
         result.append(data[index : index + sequence_length])
         
     result = np.array(result)
-    # 10% hold out
     row = round(0.9 * result.shape[0])
     train = result[: int(row), :]
     
@@ -91,7 +90,7 @@ def build_model(layers, neurons, d):
 
 for window in range(1,17):
     # window = 4
-    shape = [1, window, 1]
+    shape = [2, window, 1]
     neurons = [128,128,32,1]
     d=0.2
     df = standard_scaler('300333', normalize=True)
