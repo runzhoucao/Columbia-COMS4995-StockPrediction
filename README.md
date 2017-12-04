@@ -29,3 +29,15 @@ The data in stock_price.xlsx and stock_with_sentiment.xlsx comes from
 
 ## result.xlsx
 This file contains the accuracy of our model under different circumstances.
+
+## NewsCrawling/scraper.py
+This is a simple web crawler that extract url from Reuters.com
+
+## NewsCrawling/file
+This is the result of date:url pairs of Apple news
+
+## SentimentAnalysis/bullishness.py
+This is the script that extract entity-label along with its confidence and document-label with its associated confidence
+
+## SentimentAnalysis/bullishness_in_order.py
+This script rearranges the bullishness result in an increasing order of date
