@@ -28,7 +28,15 @@ if __name__ == '__main__':
 				else :
 					countDict[date] = 1
 					bullishnessDict[date] = float(row['entity-confidence']) * -1.0
-	with open(out, "wb") as csvfile:
+			# now neutral sentiment will be assigned 0 
+			else:
+				if date in countDict:
+					countDict[date] += 1
+					#no change in the score
+				else:
+					countDict[date] = 1
+					bullishnessDict[date] = 0
+ 	with open(out, "wb") as csvfile:
 		fieldnames = ('date', 'bullishness')
 		writer = csv.DictWriter(csvfile, fieldnames = fieldnames)
 		writer.writeheader()
