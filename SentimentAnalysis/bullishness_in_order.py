@@ -21,17 +21,17 @@ if __name__ == '__main__':
 			year = row['date'][-4:]
 
 			newKey = year + month + day
-			newDict[newKey] = row['bullishness']
+			newDict[newKey] = row['opinion']
 
 	od = collections.OrderedDict(sorted(newDict.items()))
 
 	with open(out, "wb") as csvfile:
-		fieldnames = ('date', 'bullishness')
+		fieldnames = ('date', 'opinion')
 		writer = csv.DictWriter(csvfile, fieldnames = fieldnames)
 		writer.writeheader()
 		for k, v in od.items():
 			#print(row)
 			writer.writerow({
 				'date' : k,
-				'bullishness' : v
+				'opinion' : v
 				})
