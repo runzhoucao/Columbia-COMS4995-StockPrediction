@@ -10,13 +10,14 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt2
 import random
+import sys
 
 # same file as stock_pred_sent.py 
 # the only difference is that in this script, the opinion first undergoes Z-score normalization,
 # then undergoes min-max normalization, as the reference paper did.
 
-def standard_scaler(stock_name, normalize=True):
-    df = pd.read_excel('stock_with_sentiment.xlsx', sheetname=stock_name)
+def standard_scaler(file_name, stock_name, normalize=True):
+    df = pd.read_excel(file_name, sheetname=stock_name)
     if shape[0]==1 and normalize:
         min_max_scaler = prep.MinMaxScaler()
         df['price'] = min_max_scaler.fit_transform(df['price'].values.reshape(-1,1))
@@ -85,6 +86,8 @@ def build_model(layers, neurons, d):
     model.summary()
     return model
 
+price_input = sys.argv[1]
+stock_name = sys.argv[2] 
 
 for window in range(1,17):
     # shape[#number of feature, the window size, the output size]
@@ -93,7 +96,7 @@ for window in range(1,17):
     neurons = [128,128,32,1]
     # dropout rate
     d=0.2
-    df = standard_scaler('300333', normalize=True)
+    df = standard_scaler(price_input, stock_name, normalize=True)
 
     X_train, y_train, X_test, y_test = preprocess_data(df, window)
 

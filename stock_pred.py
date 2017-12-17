@@ -9,13 +9,14 @@ import sklearn.preprocessing as prep
 from sklearn.preprocessing import MinMaxScaler
 import matplotlib.pyplot as plt2
 import random
+import sys
 
 # this script is called when only stock information is available.
 # if want to analyse stock info + sentiment info, call stock_pred_sent.py
 
 # normalize the input
-def standard_scaler(stock_name, normalize=True):
-    df = pd.read_excel('stock_price.xlsx', sheetname=stock_name)
+def standard_scaler(file_name, stock_name, normalize=True):
+    df = pd.read_excel(file_name, sheetname=stock_name)
     if shape[0]==1 and normalize:
         # normalize the price by using min-max normalization
         min_max_scaler = prep.MinMaxScaler()
@@ -84,6 +85,8 @@ def build_model(layers, neurons, d):
     model.summary()
     return model
 
+price_input = sys.argv[1]
+stock_name = sys.argv[2] 
 
 for window in range(1,17):
     # shape[#number of feature, the window size, the output size]
@@ -92,7 +95,7 @@ for window in range(1,17):
     neurons = [128,128,32,1]
     # dropout rate
     d=0.2
-    df = standard_scaler('300333', normalize=True)
+    df = standard_scaler(price_input, stock_name, normalize=True)
 
     X_train, y_train, X_test, y_test = preprocess_data(df, window)
 
