@@ -3,20 +3,20 @@ In this project, our goal is to use previous period's (day t-k to day t) news se
 
 ## Dependencies
 Environment:
-Python 2.7
-Ubuntu 16.04
+- Python 2.7
+- Ubuntu 16.04
 
 Packages:
-sudo apt-get install python-pip python-dev
-sudo pip install Scrapy
-sudo pip install tensorflow
-sudo pip install numpy
-sudo apt-get install libatlas-base-dev gfortran
-sudo pip install scipy
-sudo pip install -U scikit-learn
-sudo pip install matplotlib
-sudo pip install keras
-sudo pip install pandas
+- sudo apt-get install python-pip python-dev
+- sudo pip install Scrapy
+- sudo pip install tensorflow
+- sudo pip install numpy
+- sudo apt-get install libatlas-base-dev gfortran
+- sudo pip install scipy
+- sudo pip install -U scikit-learn
+- sudo pip install matplotlib
+- sudo pip install keras
+- sudo pip install pandas
 
 To run sentiment analysis, a rosette key is required. You may acquire the key from https://www.rosette.com/
 
