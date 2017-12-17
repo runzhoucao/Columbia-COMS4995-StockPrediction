@@ -7,30 +7,43 @@ Environment:
 - Ubuntu 16.04
 
 Packages:
-- sudo apt-get install python-pip python-dev
-- sudo pip install Scrapy
-- sudo pip install tensorflow
-- sudo pip install numpy
-- sudo apt-get install libatlas-base-dev gfortran
-- sudo pip install scipy
-- sudo pip install -U scikit-learn
-- sudo pip install matplotlib
-- sudo pip install keras
-- sudo pip install pandas
-
+```
+sudo apt-get install python-pip python-dev
+sudo pip install Scrapy
+sudo pip install tensorflow
+sudo pip install numpy
+sudo apt-get install libatlas-base-dev gfortran
+sudo pip install scipy
+sudo pip install -U scikit-learn
+sudo pip install matplotlib
+sudo pip install keras
+sudo pip install pandas
+```
 To run sentiment analysis, a rosette key is required. You may acquire the key from https://www.rosette.com/
 
-## result.xlsx
-This file contains the accuracy of our model under different circumstances.
+## Usage
+# To predict with price information only
+```python
+python stock_pred.py <STOCK_PRICE_FILE> <SHEET_NAME>
+```
+* <STOCK_PRICE_FILE> is ./us_stock_data/stock_price.xlsx or ./chinese_stock_data/stock_price.xlsx
+* <SHHET_NAME> is the stock you are interested in
 
-## NewsCrawling/scraper.py
-This is a simple web crawler that extract url from Reuters.com
+# To predict with price information and sentiment information
+``` python
+python stock_pred_with_sent.py <STOCK_PRICE_WITH_SENT_FILE> <SHEET_NAME>
+```
+* <STOCK_PRICE_WITH_SENT_FILE> is ./us_stock_data/stock_price_with_sentiment.xlsx or ./chinese_stock_data/stock_price_with_sentiment.xlsx
+* <SHHET_NAME> is the stock you are interested in
 
-## NewsCrawling/file
-This is the result of date:url pairs of Apple news
+## results/
+Contain results obtained on Chinese stocks and on US stocks
 
-## SentimentAnalysis/bullishness.py
-This is the script that extract entity-label along with its confidence and document-label with its associated confidence
+## NewsCrawling/
+Contain a web crawler that extract url from Reuters.com and sample output
 
-## SentimentAnalysis/bullishness_in_order.py
-This script rearranges the bullishness result in an increasing order of date
+## SentimentAnalysis/
+Contain tools for conducting sentiment analysis. Detailed description is included in the folder.
+
+## chinese_stock_data/ and us_stock_data
+Contain raw data of Chinese stocks and US stocks

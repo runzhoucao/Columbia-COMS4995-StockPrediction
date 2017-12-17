@@ -41,4 +41,4 @@ Take 2 arguments:
 
 Function: Fill in the bullishness of days with no news
 
-The output of fill_null_sent_score.py is then organized into ../us_stock_data/stock_with_sentiment.xlsx
+The output of fill_null_sent_score.py is then organized into ../us_stock_data/stock_price_with_sentiment.xlsx
