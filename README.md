@@ -45,5 +45,8 @@ Contain a web crawler that extract url from Reuters.com and sample output
 ## SentimentAnalysis/
 Contain tools for conducting sentiment analysis. Detailed description is included in the folder.
 
-## chinese_stock_data/ and us_stock_data
-Contain raw data of Chinese stocks and US stocks
+## chinese_stock_data/
+Contain raw data of Chinese stocks. Collect from previous research [Stock Volatility Prediction Using Recurrent Neural Networks with Sentiment Analysis](https://arxiv.org/abs/1705.02447) by Yifan Liu, Zengchang Qin, Pengyu Li, Tao Wan.
+
+## us_stock_data/
+Contain raw data of US stocks.
