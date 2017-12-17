@@ -2,10 +2,11 @@ from __future__ import print_function
 
 import csv
 import collections
+import sys
 
 if __name__ == '__main__':
-	filename = 'bullishness.csv'
-	out = 'bullishness_in_order.csv'
+	filename = sys.argv[1] # 'bullishness.csv'
+	out = sys.argv[2] # 'bullishness_in_order.csv'
 	newDict = {}
 	with open(filename, 'rU') as csvfile:
 		reader = csv.DictReader(csvfile)

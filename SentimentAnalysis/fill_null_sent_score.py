@@ -2,10 +2,11 @@ from __future__ import print_function
 
 import csv
 import collections
+import sys
 
 if __name__ == '__main__':
-	filename = 'bullishness_with_price_unfilled.csv'
-	out = 'bullishness_with_price_filled.csv'
+	filename = sys.argv[1] # 'bullishness_with_price_unfilled.csv'
+	out = sys.argv[2] # 'bullishness_with_price_filled.csv'
 	with open(out, 'wb') as csvfile_out:
 		fieldnames = ('date', 'opinion', 'price')
 		writer = csv.DictWriter(csvfile_out, fieldnames = fieldnames)

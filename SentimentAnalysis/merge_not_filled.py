@@ -2,10 +2,11 @@ from __future__ import print_function
 
 import csv
 import collections
+import sys
 
 if __name__ == '__main__':
-	market_filename = 'AAPL.csv'
-	out = 'bullishness_with_price_unfilled.csv'
+	market_filename = sys.argv[1] # 'stock_price.csv'
+	out = sys.argv[3] #'bullishness_with_price_unfilled.csv'
 	priceDict = {}
 	with open(market_filename, 'rU') as csvfile:
 		reader = csv.DictReader(csvfile)
@@ -23,7 +24,7 @@ if __name__ == '__main__':
 	orderedPriceDict = collections.OrderedDict(sorted(priceDict.items()))
 
 
-	sent_filename = 'bullishness_in_order.csv'
+	sent_filename = sys.argv[2] # 'bullishness_in_order.csv'
 	sentDict = {}
 	with open(sent_filename, 'rU') as csvfile2:
 		reader2 = csv.DictReader(csvfile2)

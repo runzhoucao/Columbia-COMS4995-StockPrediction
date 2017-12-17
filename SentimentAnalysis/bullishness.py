@@ -1,10 +1,11 @@
 from __future__ import print_function
 
 import csv
+import sys
 
 if __name__ == '__main__':
-	filename = 'result1-end.csv'
-	out = 'bullishness.csv'
+	filename = sys.argv[1] #'raw_sentiment.csv'
+	out = sys.argv[2] #'bullishness.csv'
 	countDict = {}
 	bullishnessDict = {}
 	with open(filename, 'rU') as csvfile:
