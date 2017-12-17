@@ -2,7 +2,8 @@
 In this project, our goal is to use previous period's (day t-k to day t) news sentiment and stock performance of five companies (AAPL, GOOG, AMZN, FB and MSFT) to predict their next day's (day t+1) stock performance. We first used our LSTM model to replicate a previous study using its data. The paper is [Stock Volatility Prediction Using Recurrent Neural Networks with Sentiment Analysis](https://arxiv.org/abs/1705.02447) by Yifan Liu, Zengchang Qin, Pengyu Li, Tao Wan. Then in our second step, we collected price information and news from 11-11-2012 to 11-11-2017. We used the tools listed in the SentimentAnalysis folder to extract the sentiment information, then run the scripts to obtain the performance of our model.
 
 ## Results
-![alt text](https://ibb.co/bDYLEm)
+### Performance of our models on US stocks
+![alt text](https://image.ibb.co/by7QfR/chart_2.png)
 
 ## Dependencies
 Environment:
@@ -25,14 +26,14 @@ sudo pip install pandas
 To run sentiment analysis, a rosette key is required. You may acquire a key from https://www.rosette.com/
 
 ## Usage
-# To predict with price information only
+### To predict with price information only
 ```python
 python stock_pred.py <STOCK_PRICE_FILE> <SHEET_NAME>
 ```
 * <STOCK_PRICE_FILE> is ./us_stock_data/stock_price.xlsx or ./chinese_stock_data/stock_price.xlsx
 * <SHHET_NAME> is the stock you are interested in
 
-# To predict with price information and sentiment information
+### To predict with price information and sentiment information
 ``` python
 python stock_pred_with_sent.py <STOCK_PRICE_WITH_SENT_FILE> <SHEET_NAME>
 ```
